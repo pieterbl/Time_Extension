@@ -49,7 +49,7 @@ const String TimeExtension::getTimeString() {
 const String TimeExtension::getDateString(time_t someTime) {
 
 	String dateString = "";
-	dateString += (1970 + year(someTime));
+	dateString += (year(someTime));
 	dateString += "-";
 	addTwoDigitNumberWithZeroPrefix(dateString, month(someTime));
 	dateString += "-";
@@ -70,7 +70,8 @@ const String TimeExtension::getTimeString(time_t someTime) {
 	return timeString;
 }
 
-void TimeExtension::addTwoDigitNumberWithZeroPrefix(String &str, uint8_t number) {
+void TimeExtension::addTwoDigitNumberWithZeroPrefix(String &str,
+		uint8_t number) {
 
 	if (number < 10) {
 		str += '0';
