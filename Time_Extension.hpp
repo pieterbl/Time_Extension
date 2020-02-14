@@ -30,6 +30,5 @@
 #include <Arduino.h>
 #include <TimeLib.h>
 
-// TODO: check if MIT license is reflected in GitHub
 
 #endif // __TIME_EXTENSION_HPP__
