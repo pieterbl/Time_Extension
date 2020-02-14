@@ -30,5 +30,27 @@
 #include <Arduino.h>
 #include <TimeLib.h>
 
+class TimeExtension {
+
+public:
+
+	TimeExtension() {
+	}
+
+	const String getDateTimeString();
+
+	const String getDateString();
+
+	const String getTimeString();
+
+	const String getDateString(time_t someTime);
+
+	const String getTimeString(time_t someTime);
+
+private:
+
+	void addTwoDigitNumberWithZeroPrefix(String &str, uint8_t number);
+
+};
 
 #endif // __TIME_EXTENSION_HPP__

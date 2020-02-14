@@ -24,5 +24,56 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-#include "Time_Extension.hpp"
+#include <Time_Extension.hpp>
+#include <TimeLib.h>
 
+const String TimeExtension::getDateTimeString() {
+	time_t nowTime = now();
+	String dateTime = "";
+	dateTime += getDateString(nowTime);
+	dateTime += " ";
+	dateTime += getTimeString(nowTime);
+	return dateTime;
+}
+
+const String TimeExtension::getDateString() {
+	time_t nowTime = now();
+	return getDateString(nowTime);
+}
+
+const String TimeExtension::getTimeString() {
+	time_t nowTime = now();
+	return getTimeString(nowTime);
+}
+
+const String TimeExtension::getDateString(time_t someTime) {
+
+	String dateString = "";
+	dateString += (1970 + year(someTime));
+	dateString += "-";
+	addTwoDigitNumberWithZeroPrefix(dateString, month(someTime));
+	dateString += "-";
+	addTwoDigitNumberWithZeroPrefix(dateString, day(someTime));
+
+	return dateString;
+}
+
+const String TimeExtension::getTimeString(time_t someTime) {
+
+	String timeString = "";
+	addTwoDigitNumberWithZeroPrefix(timeString, hour(someTime));
+	timeString += ":";
+	addTwoDigitNumberWithZeroPrefix(timeString, minute(someTime));
+	timeString += ":";
+	addTwoDigitNumberWithZeroPrefix(timeString, second(someTime));
+
+	return timeString;
+}
+
+void TimeExtension::addTwoDigitNumberWithZeroPrefix(String &str, uint8_t number) {
+
+	if (number < 10) {
+		str += '0';
+	}
+	str += number;
+}
