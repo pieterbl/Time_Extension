@@ -33,7 +33,6 @@
 class TimeExtension {
 
 public:
-
 	TimeExtension() {
 	}
 
