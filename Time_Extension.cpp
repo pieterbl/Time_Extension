@@ -27,12 +27,21 @@
 #include <Time_Extension.hpp>
 #include <TimeLib.h>
 
+/*
+ * Straight-forward, likely the not the fasted or most memory optimized implementation,
+ * without much magic.
+ */
 const String TimeExtension::getDateTimeString() {
+
 	time_t nowTime = now();
+
 	String dateTime = "";
+	dateTime.reserve(24);
+
 	dateTime += getDateString(nowTime);
-	dateTime += " ";
+	dateTime += ' ';
 	dateTime += getTimeString(nowTime);
+
 	return dateTime;
 }
 
@@ -46,25 +55,37 @@ const String TimeExtension::getTimeString() {
 	return getTimeString(nowTime);
 }
 
+/*
+ * Straight-forward, likely the not the fasted or most memory optimized implementation,
+ * without much magic.
+ */
 const String TimeExtension::getDateString(time_t someTime) {
 
 	String dateString = "";
-	dateString += (year(someTime));
-	dateString += "-";
+	dateString.reserve(12);
+
+	dateString += year(someTime);
+	dateString += '-';
 	addTwoDigitNumberWithZeroPrefix(dateString, month(someTime));
-	dateString += "-";
+	dateString += '-';
 	addTwoDigitNumberWithZeroPrefix(dateString, day(someTime));
 
 	return dateString;
 }
 
+/*
+ * Straight-forward, likely the not the fasted or most memory optimized implementation,
+ * without much magic.
+ */
 const String TimeExtension::getTimeString(time_t someTime) {
 
 	String timeString = "";
+	timeString.reserve(10);
+
 	addTwoDigitNumberWithZeroPrefix(timeString, hour(someTime));
-	timeString += ":";
+	timeString += ':';
 	addTwoDigitNumberWithZeroPrefix(timeString, minute(someTime));
-	timeString += ":";
+	timeString += ':';
 	addTwoDigitNumberWithZeroPrefix(timeString, second(someTime));
 
 	return timeString;
