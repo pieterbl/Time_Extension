@@ -16,6 +16,7 @@ Please correct me where I'm wrong or incomplete.
 1. The Arduino libraries come with a standard `time.h` library.
    - The `time.h` library for example offers the function `strftime`, for formatting of date/time strings. This function can be used to create typical YYYYMMDD / HHMMSS strings.
    - A discussion on how to convert the `strftime` result to a `String` can be found at [how-do-you-convert-a-formatted-print-statement-into-a-string-variable)](https://arduino.stackexchange.com/questions/52676/how-do-you-convert-a-formatted-print-statement-into-a-string-variable).
+      - Note that this discussion does not seem to be related to a standard Arduino, but rather to [Getting Date & Time From NTP Server With ESP32](https://lastminuteengineers.com/esp32-ntp-server-date-time-tutorial/).  
 2. There used to be an additional `DateTime.h` library in the now read-only [Arduino Playground](https://playground.arduino.cc/Code/DateTime/).
    - This library had a successor `Time.h` library, which was also hosted in the now read-only [Arduino Playground](https://playground.arduino.cc/Code/Time/).
 3. The de-facto successor of the Arduino Playground `Time.h` library seems to be the [PaulStoffregen / Time](https://github.com/PaulStoffregen/Time) project on GitHub. February 2020, this project states:
