@@ -35,8 +35,14 @@
 #include <TimeLib.h>
 
 class TimeExtension {
-
 public:
+
+	static const char * DATE_TIME_FORMAT;
+
+	static const char * DATE_FORMAT;
+
+	static const char * TIME_FORMAT;
+
 	TimeExtension() {
 	}
 

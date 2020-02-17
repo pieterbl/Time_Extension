@@ -27,6 +27,12 @@
 #include <Time_Extension.hpp>
 #include <TimeLib.h>
 
+const char *TimeExtension::DATE_TIME_FORMAT = "%Y-%m-%d %H:%M:%S";
+
+const char *TimeExtension::DATE_FORMAT = "%Y-%m-%d";
+
+const char *TimeExtension::TIME_FORMAT = "%H:%M:%S";
+
 const String TimeExtension::getDateTimeString() {
 	time_t nowTime = now();
 	return getDateTimeString(nowTime);

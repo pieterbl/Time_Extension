@@ -66,12 +66,26 @@ void loop() {
 	time_t stdTime = ::mktime(&stdTimeStruct);
 	String stdTimeStr = TimeExtension::getDateTimeString(stdTime);
 
-	Serial.print("from-now()      : ");
+	Serial.print("from-now()         : ");
 	Serial.println(nowTimeStr);
-	Serial.print("from-TimeLib.h  : ");
+	Serial.print("from-TimeLib.h     : ");
 	Serial.println(timeLibTimeStr);
-	Serial.print("from-std-time.h : ");
+	Serial.print("from-std-time.h    : ");
 	Serial.println(stdTimeStr);
+
+	char buf[32];
+
+	TimeExtension::strftime(buf, 30, TimeExtension::DATE_TIME_FORMAT, nowTime);
+	Serial.print("buf time_t         : ");
+	Serial.println(buf);
+
+	TimeExtension::strftime(buf, 30, TimeExtension::DATE_TIME_FORMAT, &timeLibTimeStruct);
+	Serial.print("buf tmElements_t   : ");
+	Serial.println(buf);
+
+	TimeExtension::strftime(buf, 30, TimeExtension::DATE_TIME_FORMAT, &stdTimeStruct);
+	Serial.print("buf tm             : ");
+	Serial.println(buf);
 
 	Serial.println();
 	delay(1000);
