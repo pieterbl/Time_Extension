@@ -44,7 +44,7 @@ const String TimeExtension::getTimeString() {
 
 /*
  * Straight-forward, likely the not the fasted or most memory optimized implementation,
- * without much magic.
+ * without much magic. KISS.
  */
 const String TimeExtension::getDateTimeString(time_t someTime) {
 
@@ -60,7 +60,7 @@ const String TimeExtension::getDateTimeString(time_t someTime) {
 
 /*
  * Straight-forward, likely the not the fasted or most memory optimized implementation,
- * without much magic.
+ * without much magic. KISS.
  */
 const String TimeExtension::getDateString(time_t someTime) {
 
@@ -78,7 +78,7 @@ const String TimeExtension::getDateString(time_t someTime) {
 
 /*
  * Straight-forward, likely the not the fasted or most memory optimized implementation,
- * without much magic.
+ * without much magic. KISS.
  */
 const String TimeExtension::getTimeString(time_t someTime) {
 

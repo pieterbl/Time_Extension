@@ -7,6 +7,12 @@ Extend the Arduino Time library with (e.g.) HH:MM:SS formatting.
 
 License information can be found [here](./LICENSE.md).
 
+## Provided Examples
+
+| Example | Description |
+| ------- | ----------- |
+| [StrftimeForTimeLibAndStdTime](./examples/StrftimeForTimeLibAndStdTime/StrftimeForTimeLibAndStdTime.ino) | Illustrates formatting via `TimeExtension::getDateTimeString` and `TimeExtension::strftime`. In addition conversion from `time_t` to `TimeLib.h` time structure **_and back_**, and from `time.h` time structure `tm` **_and back_** are tested. Result validation is by visual inspection of `Serial.println()` output. |
+
 ## Background Information
 
 It took me a while to understand the situation regarding time related libraries for the Arduino.

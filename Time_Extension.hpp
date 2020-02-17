@@ -46,18 +46,18 @@ public:
 
 	const String getTimeString();
 
-	const String getDateTimeString(time_t someTime);
+	static const String getDateTimeString(time_t someTime);
 
-	const String getDateString(time_t someTime);
+	static const String getDateString(time_t someTime);
 
-	const String getTimeString(time_t someTime);
+	static const String getTimeString(time_t someTime);
 
 #ifdef __USE_STD_ARDUINO_TIME_H__
 
 	/*
 	 * TimeLib::tmElements_t => time_t, call TimeExtension::strftime
 	 */
-	inline size_t strftime(char *s, size_t maxsize, const char *format,
+	static inline size_t strftime(char *s, size_t maxsize, const char *format,
 			const tmElements_t *timeStructPtr) {
 
 		time_t someTime = ::makeTime(*timeStructPtr);
@@ -67,7 +67,7 @@ public:
 	/*
 	 * time_t => time::tm, call ::strftime
 	 */
-	inline size_t strftime(char *s, size_t maxsize, const char *format,
+	static inline size_t strftime(char *s, size_t maxsize, const char *format,
 			time_t someTime) {
 
 		tm *timeStructPtr = ::localtime(&someTime);
@@ -77,7 +77,7 @@ public:
 	/*
 	 * time::tm stays time::tm, call ::strftime
 	 */
-	inline size_t strftime(char *s, size_t maxsize, const char *format,
+	static inline size_t strftime(char *s, size_t maxsize, const char *format,
 			const struct tm *timeStructPtr) {
 
 		return ::strftime(s, maxsize, format, timeStructPtr);
@@ -87,7 +87,7 @@ public:
 
 private:
 
-	void addTwoDigitNumberWithZeroPrefix(String &str, uint8_t number);
+	static void addTwoDigitNumberWithZeroPrefix(String &str, uint8_t number);
 
 };
 
