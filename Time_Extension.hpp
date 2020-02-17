@@ -46,6 +46,8 @@ public:
 
 	const String getTimeString();
 
+	const String getDateTimeString(time_t someTime);
+
 	const String getDateString(time_t someTime);
 
 	const String getTimeString(time_t someTime);

@@ -27,22 +27,9 @@
 #include <Time_Extension.hpp>
 #include <TimeLib.h>
 
-/*
- * Straight-forward, likely the not the fasted or most memory optimized implementation,
- * without much magic.
- */
 const String TimeExtension::getDateTimeString() {
-
 	time_t nowTime = now();
-
-	String dateTime = "";
-	dateTime.reserve(24);
-
-	dateTime += getDateString(nowTime);
-	dateTime += ' ';
-	dateTime += getTimeString(nowTime);
-
-	return dateTime;
+	return getDateTimeString(nowTime);
 }
 
 const String TimeExtension::getDateString() {
@@ -53,6 +40,22 @@ const String TimeExtension::getDateString() {
 const String TimeExtension::getTimeString() {
 	time_t nowTime = now();
 	return getTimeString(nowTime);
+}
+
+/*
+ * Straight-forward, likely the not the fasted or most memory optimized implementation,
+ * without much magic.
+ */
+const String TimeExtension::getDateTimeString(time_t someTime) {
+
+	String dateTime = "";
+	dateTime.reserve(24);
+
+	dateTime += getDateString(someTime);
+	dateTime += ' ';
+	dateTime += getTimeString(someTime);
+
+	return dateTime;
 }
 
 /*
