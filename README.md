@@ -12,6 +12,9 @@ License information can be found [here](./LICENSE.md).
 | Example | Description |
 | ------- | ----------- |
 | [StrftimeForTimeLibAndStdTime](./examples/StrftimeForTimeLibAndStdTime/StrftimeForTimeLibAndStdTime.ino) | Illustrates formatting via `TimeExtension::getDateTimeString` and `TimeExtension::strftime`. In addition conversion from `time_t` to `TimeLib.h` time structure **_and back_**, and from `time.h` time structure `tm` **_and back_** are tested. Result validation is by visual inspection of `Serial.println()` output. |
+| | **Status:** Since both libraries have different time offsets (TimeLib: 1970, time: 2000), we notice that the time calculation is identical, but the dates are 30 years apart. **In this case we have years 1970, 2000, respectively.** |
+| [StrftimeExampleWithDS1307RTC](./examples/StrftimeExampleWithDS1307RTC/StrftimeExampleWithDS1307RTC.ino) | Similar like `StrftimeForTimeLibAndStdTime`, but with external DS1307 Real-Time-Clock. Combines the [StrftimeForTimeLibAndStdTime](./examples/StrftimeForTimeLibAndStdTime/StrftimeForTimeLibAndStdTime.ino) and the [Grove_RTC_DS1307_Extension/TimeLibSyncProviderDemo](https://github.com/pieterbl/Grove_RTC_DS1307_Extension/blob/master/examples/TimeLibSyncProviderDemo/TimeLibSyncProviderDemo.ino) examples. |
+| | **Status:** Since both libraries have different time offsets (TimeLib: 1970, time: 200), we notice that the time calculation is identical, but the dates are 30 years apart. **In this case we have years 2020, 2050, respectively, with an Real-Time-Clock running the correct current time.** |
 
 ## Background Information
 
