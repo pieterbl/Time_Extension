@@ -7,6 +7,21 @@ Extend the Arduino Time library with (e.g.) HH:MM:SS formatting.
 
 License information can be found [here](./LICENSE.md).
 
+## Library Versions
+
+| Include File | Specifics |
+| ------------ | --------- |
+| `Time_Extension.h` | Can be used with the original/unmodified [PaulStoffregen / Time](https://github.com/PaulStoffregen/Time) library. Only the (e.g.) `TimeExtension::getDateTimeString` functions will be available. |
+| `Time_Extension_with_std_Arduino_time.h` | Can only be used with modified versions of the [PaulStoffregen / Time](https://github.com/PaulStoffregen/Time) library (see below). Next to the (e.g.) `TimeExtension::getDateTimeString` functions , `TimeExtension::strftime` functions will also be available. |
+
+## Modified Versions of the [PaulStoffregen / Time](https://github.com/PaulStoffregen/Time) Library
+
+Following will work:
+
+1. You take and install the original `PaulStoffregen / Time` library, and delete the `Time.h` file from the installation directory.
+2. You create and use your own fork of the `PaulStoffregen / Time` library, and delete the `Time.h` file from it.
+3. Any other approach to get rid of the `Time.h` file in the `PaulStoffregen / Time` library.
+
 ## Provided Examples
 
 | Example | Description |
@@ -41,3 +56,9 @@ Please correct me where I'm wrong or incomplete.
       - Refer to [ISO/IEC document 9899](http://www.iso-9899.info/wiki/The_Standard) for details.
       - All conversions are made using the 'C Locale', ignoring the E or O modifiers. Due to the lack of a time zone 'name', the 'Z' conversion is also ignored.
    - This page seems to be a more official reference for the `strftime` function: <https://en.cppreference.com/w/c/chrono/strftime>.
+
+## References
+
+1. <https://arduino.stackexchange.com/questions/860/how-can-i-get-the-source-files-for-arduino-libraries>
+2. <https://www.nongnu.org/avr-libc/>
+3. <http://download.savannah.gnu.org/releases/avr-libc/>

@@ -37,11 +37,11 @@
 class TimeExtension {
 public:
 
-	static const char * DATE_TIME_FORMAT;
+	static const char *DATE_TIME_FORMAT;
 
-	static const char * DATE_FORMAT;
+	static const char *DATE_FORMAT;
 
-	static const char * TIME_FORMAT;
+	static const char *TIME_FORMAT;
 
 	TimeExtension() {
 	}
@@ -87,6 +87,21 @@ public:
 			const struct tm *timeStructPtr) {
 
 		return ::strftime(s, maxsize, format, timeStructPtr);
+	}
+
+	/*
+	 * Convenience version of strftime, using a char buf[512] for printing time strings.
+	 * Likely not the fastest or most memory optimized implementation, but it works and is straightforward.
+	 *
+	 * TODO: decide if keep or not
+	 */
+	static inline String strftime(const char *format,
+			const struct tm *timeStructPtr) {
+
+		char buf[512];
+		buf[0] = 0;
+		TimeExtension::strftime(buf, (512 - 1), format, timeStructPtr);
+		return buf;
 	}
 
 #endif // __USE_STD_ARDUINO_TIME_H__
