@@ -43,11 +43,15 @@ void loop() {
 	updateGlobalTime();
 	size_t testNum = 1;
 	runTest(testNum++, 4, 1, "", "");
-	runTest(testNum++, 5, 5, "%Y", "2020");
+	runTest(testNum++, 5, 5, "%Y", "2000");
 	runTest(testNum++, 4, 0, "%Y", "");
 	runTest(testNum++, 4, 3, "xx", "xx");
+	runTest(testNum++, 5, 5, "xxxx", "xxxx");
+	runTest(testNum++, 10, 9, "xxxx%Y", "xxxx2000");
+	runTest(testNum++, 4, 2, "xx%m", "xx");
+	runTest(testNum++, 4, 0, "%mxx", "01");
 	runTest(testNum++, 4, 0, "xxxx", "");
-	runTest(testNum++, 5, 4, "xxxx", "xxxx");
+	runTest(testNum++, 4, 0, "xxxxxxxx", "");
 }
 
 void runTest(size_t testNum, size_t maxSize, size_t expectedBytesWritten,
@@ -67,9 +71,33 @@ void runTest(size_t testNum, size_t maxSize, size_t expectedBytesWritten,
 	serialPrint("expectedOutput:'", expectedOutput, "', ");
 	serialPrint("output:'", buf, "', ");
 
+	checkAndPrintResult(bytesWritten, expectedBytesWritten, buf,
+			expectedOutput);
 	Serial.println();
 	Serial.println();
 	delay(500);
+}
+
+void checkAndPrintResult(size_t bytesWritten, size_t expectedBytesWritten,
+		const char *output, const char *expectedOutput) {
+
+	if (bytesWritten == expectedBytesWritten
+			&& strcmp(output, expectedOutput) == 0) {
+		Serial.print("- - - - - - - - - ok");
+		return;
+	}
+
+	Serial.println("================= FAILED:");
+
+	if (bytesWritten != expectedBytesWritten) {
+		Serial.println("                        : expectedBytesWritten WRONG");
+	}
+
+	if (strcmp(output, expectedOutput) != 0) {
+		Serial.println("                        : expectedOutput WRONG");
+	}
+
+	Serial.println();
 }
 
 void serialPrint(const char *prefix, const char *value, const char *postfix) {
