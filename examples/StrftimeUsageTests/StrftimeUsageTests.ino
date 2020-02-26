@@ -42,16 +42,35 @@ void setup() {
 void loop() {
 	updateGlobalTime();
 	size_t testNum = 1;
+
+	// SUCCEEDING TESTS, last parameter is the expected output
 	runTest(testNum++, 4, 1, "", "");
 	runTest(testNum++, 5, 5, "%Y", "2000");
-	runTest(testNum++, 4, 0, "%Y", "");
 	runTest(testNum++, 4, 3, "xx", "xx");
 	runTest(testNum++, 5, 5, "xxxx", "xxxx");
 	runTest(testNum++, 10, 9, "xxxx%Y", "xxxx2000");
-	runTest(testNum++, 4, 2, "xx%m", "xx");
-	runTest(testNum++, 4, 0, "%mxx", "01");
-	runTest(testNum++, 4, 0, "xxxx", "");
-	runTest(testNum++, 4, 0, "xxxxxxxx", "");
+
+	// FAILING TESTS, last parameter is the expected output
+
+	// outputs "", which is 0 chars + terminating 0 := 1 chars, maxSize==4
+	// bytesWritten is reported as 0, but is actually 1
+	runTest(testNum++, 4, 1, "%Y", "");
+
+	// outputs xx, which is 2 chars + terminating 0 := 3 chars, maxSize==4
+	// bytesWritten is reported as 2, but is actually 3
+	runTest(testNum++, 4, 3, "xx%m", "xx");
+
+	// outputs 01xx, which is 4 chars + terminating 0 := 5 chars, although we said maxSize==4
+	// bytesWritten is reported as 4, but is actually 5
+	runTest(testNum++, 4, 4, "%mxx", "01x");
+
+	// outputs xxxx, which is 4 chars + terminating 0 := 5 chars, although we said maxSize==4
+	// bytesWritten is reported as 4, but is actually 5
+	runTest(testNum++, 4, 4, "xxxx", "xxx");
+
+	// outputs xxxx, which is 4 chars + terminating 0 := 5 chars, although we said maxSize==4
+	// bytesWritten is reported as 4, but is actually 5
+	runTest(testNum++, 4, 4, "xxxxxxxx", "xxx");
 }
 
 void runTest(size_t testNum, size_t maxSize, size_t expectedBytesWritten,
@@ -90,11 +109,15 @@ void checkAndPrintResult(size_t bytesWritten, size_t expectedBytesWritten,
 	Serial.println("================= FAILED:");
 
 	if (bytesWritten != expectedBytesWritten) {
-		Serial.println("                        : expectedBytesWritten WRONG");
+		Serial.println("                        : bytesWritten WRONG");
+	}
+
+	if (bytesWritten != (strlen(output) + 1)) {
+		Serial.println("                        : bytesWritten vs. 'strlen(output) + 1' WRONG");
 	}
 
 	if (strcmp(output, expectedOutput) != 0) {
-		Serial.println("                        : expectedOutput WRONG");
+		Serial.println("                        : output WRONG");
 	}
 
 	Serial.println();
