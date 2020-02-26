@@ -26,13 +26,13 @@
  */
 
 #include <Arduino.h>
-#include <Time_Extension_with_std_Arduino_time.hpp>
+#include <time.h>
 
-tm *GLOBAL_TIME = 0;
+tm GLOBAL_TIME;
 
 void updateGlobalTime() {
-	time_t nowTime = now();
-	GLOBAL_TIME = ::localtime(&nowTime);
+	time_t nowTime = time(0);
+	localtime_r(&nowTime, &GLOBAL_TIME);
 }
 
 void setup() {
@@ -79,7 +79,7 @@ void runTest(size_t testNum, size_t maxSize, size_t expectedBytesWritten,
 	char buf[128];
 	buf[0] = 0;
 
-	size_t bytesWritten = ::strftime(buf, maxSize, formatStr, GLOBAL_TIME);
+	size_t bytesWritten = ::strftime(buf, maxSize, formatStr, &GLOBAL_TIME);
 
 	Serial.print(testNum);
 	Serial.print(": ");
@@ -113,7 +113,8 @@ void checkAndPrintResult(size_t bytesWritten, size_t expectedBytesWritten,
 	}
 
 	if (bytesWritten != (strlen(output) + 1)) {
-		Serial.println("                        : bytesWritten vs. 'strlen(output) + 1' WRONG");
+		Serial.println(
+				"                        : bytesWritten vs. 'strlen(output) + 1' WRONG");
 	}
 
 	if (strcmp(output, expectedOutput) != 0) {
