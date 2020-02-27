@@ -16,7 +16,7 @@ License information can be found [here](./LICENSE.md).
 
 ## Modified Versions of the [PaulStoffregen / Time](https://github.com/PaulStoffregen/Time) Library
 
-Following will work:
+Following will work on Microsoft Windows platforms, to overcome the file name conflict between `time.h` from the Arduino C library, and `Time.h` from the PaulStoffregen library:
 
 1. You take and install the original `PaulStoffregen / Time` library, and delete the `Time.h` file from the installation directory.
 2. You create and use your own fork of the `PaulStoffregen / Time` library, and delete the `Time.h` file from it.
@@ -53,8 +53,8 @@ Please correct me where I'm wrong or incomplete.
    - [This pull-request](https://github.com/PaulStoffregen/Time/pull/98) suggests to delete `Time.h` from mentioned GitHub project.
 5. Location of Arduino C library.
    - Both this page <https://www.arduino.cc/en/Reference/UsingAVR>
-   - This page <https://github.com/arduino/Arduino>
-   - This page <https://arduino.stackexchange.com/questions/860/how-can-i-get-the-source-files-for-arduino-libraries>
+   - And this page <https://github.com/arduino/Arduino>
+   - And this page <https://arduino.stackexchange.com/questions/860/how-can-i-get-the-source-files-for-arduino-libraries>
    - All point to <https://www.nongnu.org/avr-libc/>
    - And to <http://savannah.nongnu.org/projects/avr-libc/>
    - My conclusion is, that this is indeed the Arduino C library. Some observations:
@@ -68,5 +68,5 @@ Please correct me where I'm wrong or incomplete.
       - All conversions are made using the 'C Locale', ignoring the E or O modifiers. Due to the lack of a time zone 'name', the 'Z' conversion is also ignored.
    - This page seems to be a more official reference for the `strftime` function: <https://en.cppreference.com/w/c/chrono/strftime>.
 7. The `strftime` function has a bug, for cases where the format string does not end with a %-placeholder, see:
-   - this example demonstrating the bug: <./examples/StrftimeUsageTests/StrftimeUsageTests.ino>
-   - and the following bug report: <https://savannah.nongnu.org/bugs/?57912>
+   - This example demonstrating the bug: [./examples/StrftimeUsageTests/StrftimeUsageTests.ino](./examples/StrftimeUsageTests/StrftimeUsageTests.ino).
+   - And the following bug report: <https://savannah.nongnu.org/bugs/?57912>.
