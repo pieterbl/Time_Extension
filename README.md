@@ -58,11 +58,15 @@ Please correct me where I'm wrong or incomplete.
    - All point to <https://www.nongnu.org/avr-libc/>
    - And to <http://savannah.nongnu.org/projects/avr-libc/>
    - My conclusion is, that this is indeed the Arduino C library. Some observations:
-      - The library does not seem to be under too active development
+      - The library does not seem to be under too active development, last release is 2.0.0., from February 2016
       - There are a bunch of known issues, many of them are also quite old
+      - Nevertheless, if you check the open bugs, you will see that there's people working on them
 6. Note that the `strftime` function which is available via the Arduino `time.h` library, is not following the official C++ specification.
    - February 2020, file (e.g.) `\Sloeber_V4.3.2\arduinoPlugin\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino5\avr\include\time.h` states:
       - A complete description of `strftime()` is beyond the pale of this document.
       - Refer to [ISO/IEC document 9899](http://www.iso-9899.info/wiki/The_Standard) for details.
       - All conversions are made using the 'C Locale', ignoring the E or O modifiers. Due to the lack of a time zone 'name', the 'Z' conversion is also ignored.
    - This page seems to be a more official reference for the `strftime` function: <https://en.cppreference.com/w/c/chrono/strftime>.
+7. The `strftime` function has a bug, for cases where the format string does not end with a %-placeholder, see:
+   - this example demonstrating the bug: <./examples/StrftimeUsageTests/StrftimeUsageTests.ino>
+   - and the following bug report: <https://savannah.nongnu.org/bugs/?57912>

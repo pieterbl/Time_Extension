@@ -109,16 +109,18 @@ void checkAndPrintResult(size_t bytesWritten, size_t expectedBytesWritten,
 	Serial.println("================= FAILED:");
 
 	if (bytesWritten != expectedBytesWritten) {
-		Serial.println("                        : bytesWritten WRONG");
+		Serial.println( //
+				"                        : bytesWritten WRONG");
 	}
 
 	if (bytesWritten != (strlen(output) + 1)) {
-		Serial.println(
+		Serial.println( //
 				"                        : bytesWritten vs. 'strlen(output) + 1' WRONG");
 	}
 
 	if (strcmp(output, expectedOutput) != 0) {
-		Serial.println("                        : output WRONG");
+		Serial.println( //
+				"                        : output WRONG");
 	}
 
 	Serial.println();
