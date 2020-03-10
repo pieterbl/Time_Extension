@@ -7,6 +7,12 @@ Extend the Arduino Time library with (e.g.) HH:MM:SS formatting.
 
 License information can be found [here](./LICENSE.md).
 
+## Open Topics
+
+1. [x] Implement some examples
+2. [x] Write README.md
+3. [ ] Implement mechanism to print timestamps from either 'time.h' or from the [PaulStoffregen / Time](https://github.com/PaulStoffregen/Time) library consistently, handling/correcting the 30 year gap elegantly
+
 ## Library Versions
 
 | Include File | Specifics |
