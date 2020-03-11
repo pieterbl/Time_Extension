@@ -46,6 +46,8 @@ public:
 	TimeExtension() {
 	}
 
+	time_t getNow();
+
 	const String getDateTimeString();
 
 	const String getDateString();

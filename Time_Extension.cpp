@@ -33,18 +33,22 @@ const char *TimeExtension::DATE_FORMAT = "%Y-%m-%d";
 
 const char *TimeExtension::TIME_FORMAT = "%H:%M:%S";
 
+time_t TimeExtension::getNow() {
+	return ::now();
+}
+
 const String TimeExtension::getDateTimeString() {
-	time_t nowTime = now();
+	time_t nowTime = getNow();
 	return getDateTimeString(nowTime);
 }
 
 const String TimeExtension::getDateString() {
-	time_t nowTime = now();
+	time_t nowTime = getNow();
 	return getDateString(nowTime);
 }
 
 const String TimeExtension::getTimeString() {
-	time_t nowTime = now();
+	time_t nowTime = getNow();
 	return getTimeString(nowTime);
 }
 
